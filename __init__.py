@@ -806,11 +806,12 @@ class Recognizer(AudioSource):
         assert isinstance(audio_data, AudioData), "``audio_data`` must be audio data"
         assert key is None or isinstance(key, str), "``key`` must be ``None`` or a string"
         assert isinstance(language, str), "``language`` must be a string"
-
+        model=model
         flac_data = audio_data.get_flac_data(
             convert_rate=None if audio_data.sample_rate >= 8000 else 8000,  # audio samples must be at least 8 kHz
             convert_width=2  # audio samples must be 16-bit
         )
+        
         if key is None: key = "AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw"
         url = "http://www.google.com/speech-api/v2/recognize?{}".format(urlencode({
             "client": "chromium",
